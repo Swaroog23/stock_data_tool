@@ -1,17 +1,18 @@
 import numpy as np
 import requests
 
+from consts.api_client_consts import API_KEY, BASE_URL
+
 
 def get_data_set(symbol: str):
-    url = "https://www.alphavantage.co/query"
     params = {
         "function": "TIME_SERIES_DAILY_ADJUSTED",
         "symbol": f"{symbol}",
         "outputsize": "full",
-        "apikey": "NA9LMVVVZNFJOHL1"
+        "apikey": API_KEY
     }
 
-    response = requests.get(url, params=params)
+    response = requests.get(BASE_URL, params=params)
     data = response.json()
 
     time_series_data = data["Time Series (Daily)"]
